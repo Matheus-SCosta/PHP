@@ -1,0 +1,16 @@
+
+<?php
+
+//Programa que ler o vetor1 e que ler um muultiplicador e gera um vetor2, com os valores multiplicados do vetor1 x muultiplicador.
+
+$vetor1 = array(2,4,8);
+$vetor2 = array();
+$multiplicador = 2;
+foreach ($vetor1 as $valor) {
+  $valorvetor2 = $valor * $multiplicador;
+  $vetor2[] = $valorvetor2;
+}
+
+foreach ($vetor2 as $valor):
+  echo "$valor \n";
+endforeach;

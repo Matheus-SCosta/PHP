@@ -1,0 +1,18 @@
+<?php
+
+//Programa que leia o vetor e mostre o menor e maior valor.
+
+$vetor = array(2,45,8,1,19);
+$maior = $vetor[0];
+$menor = $maior;
+foreach ($vetor as $valor):
+  if ($valor > $maior):
+    $maior = $valor;
+  endif;
+  if ($valor < $menor):
+    $menor = $valor;
+  endif;
+endforeach;
+
+echo "$maior \n";
+echo $menor;

@@ -1,0 +1,21 @@
+<?php
+
+// Soma com multiplos valores
+
+function soma() {
+  $vetor = func_get_args();
+  $total = func_num_args();
+  $soma = 0;
+  $indice = 0;
+  while ($total != 0) {
+    $soma = $soma + $vetor[$indice];
+    $total = $total - 1;
+    $indice = $indice + 1;
+  }
+  return $soma;
+}
+
+
+
+$res=soma(4,6,2,6,1);
+echo $res;

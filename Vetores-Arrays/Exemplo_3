@@ -1,0 +1,20 @@
+<?php
+
+//programa que ler o vetor1 e que gera um segundo vetor, cujo as posições pares são o dobro do valor do vetor1, e nas posições impares serão o triplo.
+
+$vetor1 = array(1,4,6,7,8,3);
+$vetor2 = array();
+$indice = 0;
+foreach($vetor1 as $valor):
+  if ($indice % 2 == 0):
+    $vetor2[] = $valor * 2;
+  endif;
+  if ($indice % 2 != 0):
+    $vetor2[] = $valor * 3;
+  endif;
+  $indice = $indice + 1;
+endforeach;
+
+foreach ($vetor2 as $valor):
+  echo "$valor \n";
+endforeach;  

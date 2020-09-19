@@ -1,0 +1,22 @@
+<?php
+// Função chamada menor que recebe 3 números e retorne o menor deles.
+
+
+function menor($x, $y, $z) {
+  if ($x < $y and $x < $z) {
+    $menor = $x;
+  }
+  if ($y < $x and $y < $z) {
+    $menor = $y;
+  }
+  if ($z < $x and $z < $y) {
+    $menor = $z;
+  }
+  return $menor;
+}
+
+$x = 9;
+$y = 3;
+$z = 0;
+$res = menor($x, $y, $z);
+echo $res;
