@@ -1,0 +1,44 @@
+<?php
+/* Exemplo de programa que tenha a funcionalidade de uma calculadora simples. O programa
+deve solicitar a digitação de dois operandos e um operador (+ - x * / %) e deve imprimir ao
+resultado da operação aritmética. Caso o usuário digite um operador inválido, o programa
+deve imprimir "Operador desconhecido". 
+*/
+
+$numero1 = 10;
+$numero2 = 2;
+$operador = "/";
+if ($numero1 > $numero2) {
+  $maior = $numero1;
+  $menor = $numero2;
+}
+else {
+  $maior = $numero2;
+  $menor = $numero1;
+}
+if ( $operador == "+") {
+  $resultado = $maior + $menor;
+  echo "$maior $operador $menor = $resultado";
+}
+if ( $operador == "-") {
+  $resultado = $maior - $menor;
+  echo "$maior $operador $menor = $resultado";
+}
+if ( $operador == "/") {
+  $resultado = $maior / $menor;
+  echo "$maior $operador $menor = $resultado";
+}
+if ( $operador == "*") {
+  $resultado = $maior * $menor;
+  echo "$maior $operador $menor = $resultado";
+}
+if ( $operador == "%") {
+  $resultado = $maior % $menor;
+  echo "$maior $operador $menor = $resultado";
+}
+if ($operador !="+" and $operador !="-" and $operador !="*" and $operador !="/" and $operador !="%")  {
+  echo "Valor inválido";
+}
+
+
+?>

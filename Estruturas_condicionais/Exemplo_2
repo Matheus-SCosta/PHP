@@ -1,0 +1,47 @@
+<?php
+
+//  O usuário digita o seu estado e mostrar a região.
+
+$estado = "Amazonas";
+switch ($estado) {
+  case "Paraiba":
+  case "Pernambuco":
+  case "Alagoas": 
+  case "Maranhão":
+  case "Piauí": 
+  case "Ceará": 
+  case "Rio Grande do Norte": 
+  case "Sergipe": 
+  case "Bahia" :
+    echo "Nordeste";
+    break;
+  case "Mato Grosso" :
+  case "Mato Grosso do Sul": 
+  case "Goiás":
+  case "Brasilia":
+    echo "Centro-Oeste";
+    break;   
+  case "Espírito Santo":
+  case "Minas Gerais":
+  case "Rio de Janeiro":
+  case "São Paulo":
+    echo "Sudeste";
+    break;
+  case "Paraná":
+  case "Rio Grande do Sul":
+  case "Santa Catarina":
+    echo "Sul";
+    break;
+  case "Amazonas":
+  case "Roraima":
+  case "Amapá":
+  case "Pará":
+  case "Tocantins":
+  case "Rondônia":
+  case "Acre":
+    echo "Norte";
+
+}
+
+
+?>
