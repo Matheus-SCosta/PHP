@@ -1,0 +1,25 @@
+<?php
+
+# Um banco concederá um crédito especial aos seus clientes, de acordo com o saldo médio de cada
+#cliente no último ano. Escreva um programa que leia o nome e o saldo médio de um cliente e
+#calcule o valor do crédito de acordo com a tabela abaixo.
+#Saldo médio (R$) Percentual
+
+#de 0 a 200 Nenhum crédito
+#de 201 a 400 20% do valor do saldo médio
+#de 401 a 600 30% do valor do saldo médio
+#acima de 601 40% do valor do saldo médio
+
+#O programa deverá exibir uma mensagem informando o nome do cliente, seu saldo médio e o valor
+#do crédito disponibilizado. */
+
+$nome = "João Silva";
+$saldo_medio = 601;
+
+($saldo_medio >= 0 and $saldo_medio <=200) ? $resultado = 0 : "";
+($saldo_medio >= 201 and $saldo_medio <=400) ? $resultado = ($saldo_medio / 100) * 20 : "";
+($saldo_medio >= 401 and $saldo_medio <=600) ? $resultado = ($saldo_medio / 100) * 30 : "";
+($saldo_medio >= 601) ? $resultado = ($saldo_medio / 100 ) * 40 : "";
+echo "$nome, o seu saldo médio é R$".number_format($saldo_medio, 2)." e o seu valor de crédito é R$".number_format($resultado, 2);
+
+ ?>

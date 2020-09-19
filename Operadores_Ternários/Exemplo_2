@@ -1,0 +1,25 @@
+<?php
+
+/*Programa que leia a idade de um nadador e classifique-o em uma das seguintes
+categorias:
+a) infantil A = 5 a 7 anos
+b) infantil B = 8 a 10 anos
+c) juvenil A = 11 a 13 anos
+d) juvenil B = 14 a 17 anos
+e) adulto = maiores de 18 anos */
+
+
+
+
+
+
+$idade = 6;
+$idade >= 18 ? $categoria = "Adulto" : "";
+$idade >= 14 ? $categoria = "Juvenil B" : "";
+$idade >= 11 ? $categoria = "Juvenil A" : "";
+$idade >= 8 ? $categoria = "Infantil B" : "";
+$idade >= 5 ? $categoria = "Infantil A" : "";
+
+echo "Categoria do nadador: $categoria";
+
+?>

@@ -1,0 +1,21 @@
+<?php
+
+//Programa para ler 1º e 2º linha do arquivos, e depois todo o arquivo.
+
+$arquivo = fopen("aaa.php","r");
+$linha = fgets($arquivo);
+echo $linha;
+echo "\n";
+$linha2 = fgets($arquivo);
+echo $linha2;
+echo "\n";
+fclose($arquivo);
+
+
+$arquivo = fopen("aaa.php","r");
+while(true) {
+	$linha = fgets($arquivo);
+	if ($linha==null) break;
+	echo $linha;
+}
+fclose($arquivo);
