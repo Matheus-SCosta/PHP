@@ -1,0 +1,19 @@
+<?php
+
+//Ler um número e qual operação realizar: dobro, cubo ou raiz quadrada
+
+$numero = 9;
+$operacao = "raiz quadrada";
+switch ($operacao) {
+  case "dobro":
+    echo $numero * 2;
+    break;
+  case "cubo":
+    echo $numero * 3;
+    break;
+  case "raiz quadrada":
+    echo sqrt($numero);    
+
+}
+
+?>
