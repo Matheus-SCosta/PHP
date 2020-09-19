@@ -1,0 +1,24 @@
+<?php
+
+/*  Um dado material radioativo perde metade de sua massa a cada 50 segundos. Esse programa
+que ler uma certa quantidade de massa, em gramas, deste material e imprima o tempo necessário
+para que sua massa se torne menor que 0,5g.  */
+
+
+$material = 14.6; 
+$segundos = 0;
+
+while ($material > 0.4) {
+  $material = $material / 2;
+  $segundos = $segundos + 50;
+}
+
+$minutos = 0;
+while ($segundos > 60) {
+  $minutos = $minutos + 1;
+  $segundos = $segundos - 60;
+}
+
+echo "O tempo necessário para deixar o material em ".number_format($material, 1)."g, foi de $minutos minutos e $segundos segundos";
+
+?>

@@ -1,0 +1,21 @@
+<?php
+
+// Para saber se um número é ou não é primo
+
+
+$numero = 55;
+$contador = 0;
+
+
+for ($divisor = 1; $divisor < $numero + 1;) {
+  if($numero % $divisor == 0) {
+    $contador = $contador + 1;
+  } 
+  $divisor = $divisor + 1;
+}
+if ($contador == 2){
+  echo "É primo";
+}
+else {
+  echo "Não é Primo";
+}

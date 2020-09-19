@@ -1,0 +1,15 @@
+<?php
+
+//Tabuada de 1 a 10.
+
+
+$numero = 2;
+for ($multiplicador = 1; $multiplicador < 11;) {
+  $tabuada = ($numero * $multiplicador);
+  echo "$numero x $multiplicador = $tabuada \n";
+  $multiplicador = $multiplicador + 1;
+}
+
+
+
+

@@ -1,0 +1,19 @@
+<?php
+// Exemplo de localizar número, se existe ou não dentro do laço.
+
+
+$numero_a_procurar = 120;
+for ($contador = 1; $contador < 100;) {
+  if ($contador == $numero_a_procurar) {
+  $resultado = true;
+  break;
+  }
+  $resultado = false;
+  $contador = $contador + 1;
+}
+if ($resultado == true){
+  echo " Número $numero_a_procurar foi localizado no laço ";
+}
+else {
+  echo " Número $numero_a_procurar não foi localizado no laço";
+}

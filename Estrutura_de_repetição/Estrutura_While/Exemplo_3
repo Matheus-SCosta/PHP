@@ -1,0 +1,14 @@
+<?php
+
+// Exemplo de tabuada de 1 a 10.
+
+$numero = 2;
+$contador = 1;
+do {
+  $tabuada = $numero * $contador;
+  echo "$numero * $contador = $tabuada \n";
+  $contador = $contador + 1;
+} while ( $contador < 11 );
+
+
+?>

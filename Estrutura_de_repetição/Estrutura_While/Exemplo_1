@@ -1,0 +1,11 @@
+<?php
+
+//  Escreva um programa que gere e mostre a sequência 100, 90, 80, 70, ..., 0. 
+
+$n = 100;
+while ($n != -10) {
+  echo "$n \n";
+  $n = $n - 10;
+}
+
+?>
