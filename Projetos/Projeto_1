@@ -1,0 +1,173 @@
+<?php
+
+#Programa recebe como entrada um arquivo, calcula e retorna valores de ping, maior, menos e média de ping, latência de cada pin, maior, menor e média de ping, porcentagem de perda de dados(pings).
+
+
+$arquivo = fopen("arquivo.php","r");
+$linha = fgets($arquivo);
+$linha2 = fgets($arquivo);
+
+$request = array();
+$reply = array();
+$ping = array();
+$jitter = array();
+
+
+//Função para calcular Ping
+
+function ping($reply,$request){
+  $valorPing = ($reply - $request);
+  $valor = (string) $valorPing;
+  $replace = str_replace("0.","",$valor);
+  $pING = (int) $replace;
+  return $pING;
+}
+
+
+//Função para calcular Jitter
+
+function fjitter($ping1, $ping2){
+  if ($ping1 > $ping2):
+    $maior = $ping1;
+    $menor = $ping2;
+  endif;
+  if ($ping1 < $ping2):
+    $maior = $ping2;
+    $menor = $ping1;
+  endif;
+  $valorJitter = $maior - $menor;
+  return $valorJitter;
+}
+
+
+//Função para calcular menor, maior e média de ping.
+
+function min_max_med_ping($ping){
+  $pingMax = max($ping);
+  $pingMin = min($ping);
+  $soma = 0;
+  foreach ($ping as $valor):
+    $soma = $soma + $valor;
+  endforeach;
+  $pingMed = $soma/count($ping);
+  return array ($pingMax, $pingMin, $pingMed);
+}
+
+
+
+// Função para calcular menor, maior e média de jitter;
+
+function min_max_med_jitter($jitter){
+  $tamanhoDeJitter = count($jitter);
+  $maior = $jitter[0];
+  $menor = $maior;
+  $soma = 0;
+  foreach ($jitter as $valor):
+    if ($valor > $maior):
+      $maior = $valor;
+    endif;
+    if ($valor < $menor):
+      $menor = $valor;
+    endif;
+    $soma = $soma + $valor;
+  endforeach;
+  $media = $soma/$tamanhoDeJitter;
+  return array ($maior, $menor, $media);
+}
+
+// Função para %perdas, pings completos e incompletos
+
+function perdas($totaldepings, $pingsimcompletos){
+  $pingsCompletos = $totaldepings - $pingsimcompletos;
+  $porcentagemPerdas = ($totaldepings/100) * $pingsimcompletos;
+  return $porcentagemPerdas; 
+}
+
+// Criando o request, reply, Ping.
+
+$contadorParaPing = 0;
+$indice = 0;
+$linha = $linha2;
+$totaldepings = 0;
+$pingsimcompletos = 0;
+while(true){
+  if ($linha==null){                                                                               #Condição Parada
+    break;
+  }
+  $replace = str_replace(";"," ",$linha);
+  $replace2 = str_replace("("," ",$replace);
+  $split = explode(" ",$replace2);
+  if ($split[15] != "no"):
+    $totaldepings = $totaldepings + 1;                                                              #Total de pings
+    $contadorParaPing = $contadorParaPing + 1;
+    if ($split[9] == "request") {
+    $request[] = $split[1];
+    }
+    if ($split[9] == "reply") {
+      $reply[] = $split[1];
+    }
+    if ($contadorParaPing == 2){
+    $ping[] = (ping($reply[$indice],$request[$indice]));                                             #FUNÇAO
+    print("\n");  
+    $contadorParaPing = 0;
+    $indice = $indice + 1;
+    } 
+  endif;
+  $linha = fgets($arquivo);                                                                           #Pular linha
+  foreach ($split as $valor){
+  if ($valor == "no"){
+    $pingsimcompletos = $pingsimcompletos + 1;                                                        #Pings imcompletos
+  }
+  }
+}
+
+
+// Criando jitter
+
+$tamanhoDePing = count($ping);
+$indice = 0;
+$contadorInterno = 0;
+$pingatual = $ping[0];
+$contador = 0;
+while($contador != $tamanhoDePing){
+  if ($contadorInterno > 0):
+    $pinganterior = $pingatual;
+    $pingatual = $ping[$indice];
+    $jitter[] = fjitter($pingatual,$pinganterior) ;  #FUNCAO
+  endif;
+  $indice = $indice + 1;
+  $contadorInterno = $contadorInterno + 1; 
+  $contador = $contador + 1;
+}
+    
+
+$totalDEPINGS = ($totaldepings/2);
+$perda = perdas($totalDEPINGS, $pingsimcompletos);                                                     #FUNÇAO
+list ($jitterMaxino, $jitterMinimo, $jitterMedio) = min_max_med_jitter($jitter);                       #FUNÇAO
+list ($pingMaximo, $pingMinimo, $pingMedio) = min_max_med_ping($ping);                                 #FUNÇÂO 
+array_unshift($jitter, "-");                                                                           #Colocando "-", na primeira posição no vetor $jitter
+
+
+$tamanho = count($request);
+$linha = 1;
+$indice = 0;
+print(" #     Request      Reply     Ping     Jitter \n");
+print("-------------------------------------------------- \n");
+while($indice != $tamanho):
+  print("$linha   $request[$indice]   $reply[$indice]   $ping[$indice]     $jitter[$indice] \n");
+  $linha = $linha + 1;
+  $indice = $indice + 1;
+endwhile;
+
+print("======================================== \n");
+print("$totalDEPINGS pings completos \n");
+print("$pingsimcompletos pings incompletos\n");
+print("$perda % de perda \n");
+print("======================================== \n");
+print("Ping max = $pingMaximo ms \n");
+print("Ping min = $pingMinimo ms \n");
+print("Ping med = $pingMedio ms \n");
+print("======================================== \n");
+print("Jitter max = $jitterMaxino \n");
+print("Jitter minimo = $jitterMinimo \n");
+print("Jitter Médio = $jitterMedio \n");
